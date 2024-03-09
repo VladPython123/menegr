@@ -8,7 +8,7 @@ from keyboardmy.keyboard_users import (buttons1
 
 router = Router()
 
-chat_id = "-1001995368517"
+chat_id = "-1002000016944"
 
 dialogue = {}
 language = {}
@@ -79,7 +79,7 @@ async def text_ru(msg: types.Message, state: FSMContext, bot: Bot):
 async def English(call: types.CallbackQuery , state: FSMContext):
     global language
     user_id1 = call.from_user.id
-    language[user_id1]['langeage1'] =+ 1
+    language[user_id1]['langeage1'] =+ 2
     await state.set_state(Form.text2)
     await call.message.edit_text("Write your problems :")
     
@@ -96,15 +96,13 @@ async def text_eng(msg: types.Message, state: FSMContext, bot: Bot):
         name = msg.from_user.first_name
         username = msg.from_user.username
         profile_link = f"https://t.me/{username}"
-        print(dialogue)
         if user_id1 not in dialogue:
              dialogue[user_id1]={
             "id_users": user_id1,
             "id_meneger": None,
             "name": f"{name}",
             "status": "True",
-        }
-        print(dialogue)     
+        }   
         await state.clear()
         keyboard1 = types.InlineKeyboardMarkup(inline_keyboard=buttons4,resize_keyboard=True,)
         await bot.send_message(chat_id , text=f"{user_id1} \n\n {name} \n\n English \n\n {profile_link} \n\n{text}",reply_markup=keyboard1)
